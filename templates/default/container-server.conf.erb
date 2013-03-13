@@ -18,6 +18,9 @@
 bind_ip = <%= @bind_ip %>
 bind_port = <%= @bind_port %>
 workers = 2
+<% if node["swift"]["syslog"]["use"] %>
+  log_config = /etc/openstack/logging.conf
+<% end %>
 
 [pipeline:main]
 pipeline = container-server

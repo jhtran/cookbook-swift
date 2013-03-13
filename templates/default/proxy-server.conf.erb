@@ -38,6 +38,9 @@ end
 workers = <%= [ node[:cpu][:total] - 1, 1 ].max %>
 bind_ip = <%= @bind_host %>
 bind_port = <%= @bind_port %>
+<% if node["swift"]["syslog"]["use"] %>
+  log_config = /etc/openstack/logging.conf
+<% end %>
 
 [pipeline:main]
 pipeline = <% if @use_informant %>informant <% end %>catch_errors healthcheck cache ratelimit <%= pipeline %> proxy-server

@@ -15,6 +15,9 @@
 #####
 bind_ip = <%= @bind_ip %>
 bind_port = <%= @bind_port %>
+<% if node["swift"]["syslog"]["use"] %>
+  log_config = /etc/openstack/logging.conf
+<% end %>
 
 [pipeline:main]
 pipeline = recon object-server

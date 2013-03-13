@@ -18,6 +18,9 @@
 #
 include_recipe "osops-utils"
 include_recipe "monitoring"
+if node["swift"]["syslog"]["use"]
+  include_recipe "openstack-common::logging"
+end
 
 class Chef::Recipe
   include DriveUtils
